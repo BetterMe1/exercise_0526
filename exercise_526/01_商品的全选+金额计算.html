@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>商品的全选+金额计算</title>
+		<!--		
+			checked:选中的一种状态
+					true:选中
+					false:不选中
+		-->
+		<script>
+			function checkAll(){
+				var item = document.getElementsByName("item");
+				//检查是否有没被选过的
+				var flag = false;
+				for(var i=0; i<item.length; i++){
+					if(!item[i].checked){//没有被选过
+						flag = true;
+					}
+				}
+				if(flag){
+					//全选
+					for(var i=0; i<item.length; i++){
+						item[i].checked=true;
+					}
+				}else{
+					//取消全选
+					for(var i=0; i<item.length; i++){
+						item[i].checked=false;
+					}
+				}
+			}
+			function getSum(){
+				var sum = 0;
+				var item = document.getElementsByName("item");
+				for(var i=0; i<item.length; i++){
+					if(item[i].checked){//被选中
+						sum += parseInt(item[i].value);
+					}
+				}
+				var span = document.getElementById("sumid");
+				span.innerHTML=(new String(sum)).fontcolor("red");
+			}
+		</script>
+	</head>
+<body>
+	<div>商品列表:</div>
+<input type="checkbox" name="all" onclick="checkAll()" /> 全选<br />
+<input type="checkbox" name="item" value="3000" />笔记本电脑3000元<br />
+<input type="checkbox" name="item" value="2000" />手机2000元<br />
+<input type="checkbox" name="item" value="50" />雨伞50元<br />
+<input type="checkbox" name="item" value="80" />水杯80元<br />
+<input type="checkbox" name="item" value="100" />水果100元<br />
+<input type="checkbox" name="item" value="500" />鞋子500元<br />
+<input type="checkbox" name="all" onclick="checkAll()"/> 全选<br />
+<input type="button" value="总金额" onclick="getSum()" /><span id="sumid"></span>
+</body>
+</html>

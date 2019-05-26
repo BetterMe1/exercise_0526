@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>表格的添加和删除行</title>
+		<style>
+			.table{
+				font-size: 20px;
+			}
+		</style>
+		<script>
+		    var index = 1;
+			function add(){
+				//获取新节点的索引
+				index = index + 1;
+				//创建一个新的节点
+				var trNode = document.createElement("tr");
+				trNode.innerHTML = "<tr id='tr' align='center'><td align='center'id='td'>"+index+"</td><td><input type='text'/></td><td><input type='text'/></td></tr>"
+		        var tbNode = document.getElementById("tb");
+		        //添加
+		        tbNode.appendChild(trNode);
+			}
+			function del(){
+				if(index == 1){
+					alert("不能再删除了呀。。。");
+				}else{
+					var tbNode = document.getElementById("tb");
+				    var delNode = tb.lastChild;
+				    tbNode.removeChild(delNode);
+				    index = index - 1;
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<table align="center" border="1px" bgcolor="pink">
+			<thead>
+				<tr align="center">
+					<td>编号</td>
+					<td>姓名</td>
+					<td>密码</td>
+				</tr>
+			</thead>
+			<tbody id="tb">
+				<tr class="tr" align="center">
+					<td>1</td>
+					<td><input type="text"/></td>
+			        <td><input type="text"/></td>
+				</tr>
+			</tbody>
+			<tbody>
+				<tr align="center">
+					<td colspan="3">
+						<input type="button" value="添加一行" onclick="add()"/>
+						<input type="button" value="删除一行" onclick="del()"/>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>
